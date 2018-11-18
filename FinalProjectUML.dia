@@ -68,13 +68,13 @@
         <dia:point val="3.94,-0.17"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="3.89,-0.22;16.4347,8.08"/>
+        <dia:rectangle val="3.89,-0.22;16.3935,8.08"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
         <dia:point val="3.94,-0.17"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
-        <dia:real val="12.444687500000001"/>
+        <dia:real val="12.403515625000001"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
         <dia:real val="8.2000000000000011"/>
@@ -241,7 +241,7 @@
             <dia:string>#evolutions#</dia:string>
           </dia:attribute>
           <dia:attribute name="type">
-            <dia:string>#ArrayList&lt;Pokemon&gt;#</dia:string>
+            <dia:string>#ArrayList&lt;Integer&gt;#</dia:string>
           </dia:attribute>
           <dia:attribute name="value">
             <dia:string>##</dia:string>
@@ -389,16 +389,16 @@
     </dia:object>
     <dia:object type="UML - Class" version="0" id="O1">
       <dia:attribute name="obj_pos">
-        <dia:point val="31.31,0.15"/>
+        <dia:point val="31.71,0.1"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="31.26,0.1;41.4928,10"/>
+        <dia:rectangle val="31.66,0.05;41.8596,9.95"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
-        <dia:point val="31.31,0.15"/>
+        <dia:point val="31.71,0.1"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
-        <dia:real val="10.1328125"/>
+        <dia:real val="10.099609375"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
         <dia:real val="9.8000000000000007"/>
@@ -787,16 +787,16 @@
     </dia:object>
     <dia:object type="UML - Class" version="0" id="O2">
       <dia:attribute name="obj_pos">
-        <dia:point val="18.3,0.13"/>
+        <dia:point val="16.9,-0.17"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="18.25,0.08;29.6388,10.78"/>
+        <dia:rectangle val="16.85,-0.22;30.5055,10.48"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
-        <dia:point val="18.3,0.13"/>
+        <dia:point val="16.9,-0.17"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
-        <dia:real val="11.28875"/>
+        <dia:real val="13.555468749999999"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
         <dia:real val="10.6"/>
@@ -917,7 +917,7 @@
             <dia:string>#Pokemon#</dia:string>
           </dia:attribute>
           <dia:attribute name="type">
-            <dia:string>#ArrayList&lt;Pokemon&gt;#</dia:string>
+            <dia:string>#ArrayList&lt;CustomPokemon&gt;#</dia:string>
           </dia:attribute>
           <dia:attribute name="value">
             <dia:string>##</dia:string>
@@ -1229,13 +1229,13 @@
         <dia:point val="43.75,0.18"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="43.7,0.13;52.3916,14.03"/>
+        <dia:rectangle val="43.7,0.13;52.3637,14.03"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
         <dia:point val="43.75,0.18"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
-        <dia:real val="8.5915625000000002"/>
+        <dia:real val="8.5636718750000007"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
         <dia:real val="13.799999999999999"/>
@@ -1728,13 +1728,13 @@
         <dia:point val="8.75,14.58"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="8.7,14.53;23.1713,20.43"/>
+        <dia:rectangle val="8.7,14.53;23.1234,20.43"/>
       </dia:attribute>
       <dia:attribute name="elem_corner">
         <dia:point val="8.75,14.58"/>
       </dia:attribute>
       <dia:attribute name="elem_width">
-        <dia:real val="14.37125"/>
+        <dia:real val="14.323437500000001"/>
       </dia:attribute>
       <dia:attribute name="elem_height">
         <dia:real val="5.8000000000000007"/>
@@ -2015,19 +2015,19 @@
     </dia:object>
     <dia:object type="UML - Generalization" version="1" id="O5">
       <dia:attribute name="obj_pos">
-        <dia:point val="10.1623,8.08025"/>
+        <dia:point val="10.1418,8.08025"/>
       </dia:attribute>
       <dia:attribute name="obj_bb">
-        <dia:rectangle val="9.31234,8.03025;15.9856,14.5796"/>
+        <dia:rectangle val="9.29176,8.03025;15.9617,14.5796"/>
       </dia:attribute>
       <dia:attribute name="meta">
         <dia:composite type="dict"/>
       </dia:attribute>
       <dia:attribute name="orth_points">
-        <dia:point val="10.1623,8.08025"/>
-        <dia:point val="10.1623,11.7049"/>
-        <dia:point val="15.9356,11.7049"/>
-        <dia:point val="15.9356,14.5296"/>
+        <dia:point val="10.1418,8.08025"/>
+        <dia:point val="10.1418,11.7049"/>
+        <dia:point val="15.9117,11.7049"/>
+        <dia:point val="15.9117,14.5296"/>
       </dia:attribute>
       <dia:attribute name="orth_orient">
         <dia:enum val="1"/>
