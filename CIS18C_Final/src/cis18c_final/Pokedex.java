@@ -62,6 +62,7 @@ public class Pokedex {
             input.clear();
 
             ArrayList<Integer> evolutions = new ArrayList<>();
+            int id = Integer.parseInt(input.get(0));
             String name = input.get(1);
 
             translate.put(name, id);
@@ -77,7 +78,7 @@ public class Pokedex {
                     evolutions.add(Integer.parseInt(input.get(i)));
                 }
             }
-            fullpokedex.add(new Pokemon(Integer.parseInt(input.get(0)), name, input.get(2), input.get(3), evolutions));
+            fullpokedex.add(new Pokemon(id, name, input.get(2), input.get(3), evolutions));
         }
     }
 
