@@ -3,9 +3,18 @@ package cis18c_final;
 import java.util.ArrayList;
 
 public class CustomPokemon extends Pokemon {
-    private ArrayList<Move> movelist;
-
-    public CustomPokemon(ArrayList<Move> movelist) {
-        this.movelist = movelist;
+    public CustomPokemon(ArrayList<Move> _movelist) {
+        this.movelist = _movelist;
     }
+
+    public CustomPokemon(Pokemon p, ArrayList<Move> _movelist) {
+        super(p);
+        movelist = _movelist;
+    }
+
+    public ArrayList<Move> getMoves() {
+        return movelist;
+    }
+
+    private ArrayList<Move> movelist;
 }

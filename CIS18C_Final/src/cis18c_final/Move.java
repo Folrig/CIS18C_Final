@@ -15,6 +15,10 @@ public class Move {
         basepp = _basepp;
     }
 
+    public String getName() {
+        return name;
+    }
+
     private final String name, type;
     private final int basepower, accuracy, basepp;
 }

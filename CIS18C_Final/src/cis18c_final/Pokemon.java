@@ -19,20 +19,28 @@ public class Pokemon {
         evolutions = _evolutions;
     }
 
-    private int getId() {
+    public Pokemon(Pokemon p) {
+        id = p.id;
+        name = p.name;
+        type1 = p.type1;
+        type2 = p.type2;
+        evolutions = p.evolutions;
+    }
+
+    public int getId() {
         return id;
     }
 
-    private String getName() {
+    public String getName() {
         return name;
     }
 
-    private String[] getTypes() {
+    public String[] getTypes() {
         return new String[]{type1, type2};
 
     }
 
-    private ArrayList<Integer> getEvolutions() {
+    public ArrayList<Integer> getEvolutions() {
         return evolutions;
     }
 
