@@ -7,7 +7,7 @@ public class Move {
         100
         25
 */
-    public Move(String _name, String _type, int _basepower, int _accuracy, int _basepp) {
+    public Move(String _name, Type _type, int _basepower, int _accuracy, int _basepp) {
         name = _name;
         type = _type;
         basepower = _basepower;
@@ -19,6 +19,7 @@ public class Move {
         return name;
     }
 
-    private final String name, type;
+    private final String name;
+    private final Type type;
     private final int basepower, accuracy, basepp;
 }
