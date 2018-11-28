@@ -14,6 +14,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
@@ -21,19 +22,34 @@ import java.util.ArrayList;
  */
 public class CIS18C_Final {
     /* todo: move to a separate class? */
-    public void printMenu() {
+    public static void printMenu() {
         System.out.println("1. Query a Pokémon");
         System.out.println("2. Query a Pokémon Move");
-        System.out.println("3. Create a custom team");
-        System.out.println("4. Query all your custom teams");
-        System.out.println("5. Search for a custom team (by date)");
-        System.out.println("6. Search for a custom team (by name)");
-        System.out.println("7. Delete a custom team");
+        System.out.println("3. Query all moves");
+        System.out.println("4. Create a custom team");
+        System.out.println("5. Query all your custom teams");
+        System.out.println("6. Search for a custom team (by date)");
+        System.out.println("7. Search for a custom team (by name)");
+        System.out.println("8. Delete a custom team");
+        System.out.println("9. Quit the Pokedex");
     }
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
+
+    public static void printMoveMenu() {
+        System.out.println("1. Query moves by type.");
+        System.out.println("2. Query moves by power.");
     }
     
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        Integer menuChoice = 0;
+        Pokedex pokedex = new Pokedex();
+        
+        do {
+            System.out.println("Welcome to the Pokedex. Please select a menu option.");
+            printMenu();
+            menuChoice = input.nextInt();
+        } while(menuChoice != 9);
+        
+        
+    }
 }
