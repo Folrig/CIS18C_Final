@@ -6,11 +6,13 @@ public class Pokemon {
     /* TODO: handle branched evolutions like Eevee */
     public Pokemon() {
         id = 0;
-        name = type1 = type2 = "";
+        name = "";
+        type1 = null;
+        type2 = null;
         evolutions = new ArrayList<>();
     }
 
-    public Pokemon(int _id, String _name, String _type1, String _type2,
+    public Pokemon(int _id, String _name, Type _type1, Type _type2,
                     ArrayList<Integer> _evolutions) {
         id = _id;
         name = _name;
@@ -35,8 +37,8 @@ public class Pokemon {
         return name;
     }
 
-    public String[] getTypes() {
-        return new String[]{type1, type2};
+    public Type[] getTypes() {
+        return new Type[]{type1, type2};
 
     }
 
@@ -46,6 +48,6 @@ public class Pokemon {
 
     private final int id;
     private final String name;
-    private final String type1, type2;
+    private final Type type1, type2;
     private final ArrayList<Integer> evolutions;
 }

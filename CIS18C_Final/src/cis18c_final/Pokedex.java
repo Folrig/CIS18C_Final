@@ -81,7 +81,7 @@ public class Pokedex {
                     evolutions.add(Integer.parseInt(input.get(i)));
                 }
             }
-            fullpokedex.add(new Pokemon(id, name, input.get(2), input.get(3), evolutions));
+            fullpokedex.add(new Pokemon(id, name, Type.valueOf(input.get(2)), Type.valueOf(input.get(3)), evolutions));
         }
     }
 
@@ -92,7 +92,7 @@ public class Pokedex {
 
         /* name, type, power, accuracy, pp */
         for (i = 0; i < input.size(); i += 5) {
-            Move mv = new Move(input.get(i), input.get(i + 1), Integer.parseInt(input.get(i + 2)),
+            Move mv = new Move(input.get(i), Type.valueOf(input.get(i + 1)), Integer.parseInt(input.get(i + 2)),
                     Integer.parseInt(input.get(i + 3)),
                     Integer.parseInt(input.get(i + 4)));
             movelist.add(mv);
