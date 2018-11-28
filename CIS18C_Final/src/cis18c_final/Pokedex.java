@@ -34,6 +34,10 @@ public class Pokedex {
     public Pokemon getPokemon(int id) {
         return fullpokedex.get(id);
     }
+    
+    public Pokemon getPokemon(String name) {
+        return fullpokedex.get(getIdFromName(name));
+    }
 
     public ArrayList<Team> getTeams() {
         return teams;
