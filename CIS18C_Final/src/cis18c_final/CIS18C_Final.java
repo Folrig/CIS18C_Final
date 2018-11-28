@@ -44,11 +44,52 @@ public class CIS18C_Final {
         Integer menuChoice = 0;
         Pokedex pokedex = new Pokedex();
         
-        do {
+        while (menuChoice != 9) {
             System.out.println("Welcome to the Pokedex. Please select a menu option.");
             printMenu();
             menuChoice = input.nextInt();
-        } while(menuChoice != 9);
+            
+            if (menuChoice == 1) {
+                Integer subMenuChoice = 0;
+                System.out.printf("Would you like to search by%n1: Name%n2: ID%n");
+                subMenuChoice = input.nextInt();
+                while (subMenuChoice < 0 || subMenuChoice > 1) {
+                    System.out.printf("Please enter a valid menu choice.");
+                    subMenuChoice = input.nextInt();
+                }
+                
+                if (subMenuChoice == 1) {
+                    System.out.println("Which Pokemon would you like information for?");
+                    String pokemonByName = null;
+                    pokemonByName = input.nextLine();
+                    pokedex.getPokemon(pokemonByName).toString();
+                }
+                if (subMenuChoice == 2) {
+                    System.out.println("Which ID would you like information for?");
+                    Integer pokemonByID = 0;
+                    pokemonByID = input.nextInt();
+                    pokedex.getPokemon(pokemonByID).toString();
+                }
+            }
+            if (menuChoice == 2) {
+                // TODO: Finish implementation of searching for a single move
+                String moveToQuery = null;
+                System.out.println("What move would you like to look at?");
+                // pokedex.moveHashMap.get(moveToQuery);    this is private? possibly need a getter or to change access
+            }
+            if (menuChoice == 3) {
+                // TODO: Return an arraylist of a type of moves
+            }
+            if (menuChoice == 4) {
+                // TODO: Create a custom team
+            }
+            if (menuChoice == 5) {
+                // TODO: Query all the teams in the pokedex team array
+            }
+            else {
+                System.out.println("Please enter a valid menu choice.");
+            }
+        }
         
         
     }

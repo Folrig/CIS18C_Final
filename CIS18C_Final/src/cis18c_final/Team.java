@@ -16,6 +16,7 @@ public class Team {
         YY MM DD
         Pokemon1.id all 4 moves.name (separated by space
         Pokemon2.id etc..
+    */
 
      */
     public static class ByName implements Comparator<Team> {
@@ -99,6 +100,23 @@ public class Team {
 
         return 1;
     }
+    
+    public void addToTeam(CustomPokemon pokemon) {
+        if (this.party.size() < 6) {
+            this.party.add(pokemon);
+        } else {
+            System.out.println("Max team size reached. Please remove a Pokemon from this team first.");
+        }
+    }
+    
+    public void removeFromTeam(CustomPokemon pokemon) {
+        for (int i = 0; i < this.party.size(); i++) {
+            if (this.party.get(i).getName() == pokemon.getName()){
+                this.party.remove(i);
+            }
+        }
+    }
+    
     private static final String suffix = ".team";
     private ArrayList<CustomPokemon> party;
     private String name;
