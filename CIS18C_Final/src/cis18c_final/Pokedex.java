@@ -18,6 +18,10 @@ public class Pokedex {
         moveHashMap = new HashMap<>();
         movelist = new ArrayList<>();
 
+        for (int i = 0; i < Type.values().length; ++i) {
+            movelist.add(new ArrayList<>());
+        }
+
         initdex();
         initmoves();
         initteams();
@@ -92,10 +96,14 @@ public class Pokedex {
 
         /* name, type, power, accuracy, pp */
         for (i = 0; i < input.size(); i += 5) {
-            Move mv = new Move(input.get(i), Type.valueOf(input.get(i + 1)), Integer.parseInt(input.get(i + 2)),
+            Type type = Type.valueOf(input.get(i + 1));
+            Move mv = new Move(input.get(i), type, Integer.parseInt(input.get(i + 2)),
                     Integer.parseInt(input.get(i + 3)),
                     Integer.parseInt(input.get(i + 4)));
-            movelist.add(mv);
+            ArrayList<Move> sublist = movelist.get(type.ordinal());
+
+            sublist.add(mv);
+
             moveHashMap.put(input.get(i), mv);
         }
     }
@@ -141,5 +149,5 @@ public class Pokedex {
     private final HashMap<String, Move> moveHashMap;
     private final ArrayList<Team> teams;
     private final ArrayList<Pokemon> fullpokedex;
-    private final ArrayList<Move> movelist;
+    private final ArrayList<ArrayList<Move>> movelist;
 }

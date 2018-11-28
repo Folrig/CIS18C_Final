@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class CustomPokemon extends Pokemon {
     public CustomPokemon(ArrayList<Move> _movelist) {
-        this.movelist = _movelist;
+        movelist = _movelist;
     }
 
     public CustomPokemon(Pokemon p, ArrayList<Move> _movelist) {
@@ -17,4 +17,7 @@ public class CustomPokemon extends Pokemon {
     }
 
     private ArrayList<Move> movelist;
+    public String toString() {
+        String CP
+    }
 }

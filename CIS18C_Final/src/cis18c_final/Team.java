@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.Date;
 
 public class Team {
@@ -17,7 +18,39 @@ public class Team {
         Pokemon2.id etc..
 
      */
-
+    public static class ByName implements Comparator<Team> {
+        @Override
+        public int compare(Team lhs, Team rhs) {
+            return lhs.name.compareTo(rhs.name);
+        }
+    }
+    public static class ByDate implements Comparator<Team> {
+        @Override public int compare(Team lhs, Team rhs) {
+            if (lhs.year < rhs.year) {
+                return -1;
+            }
+            else if (lhs.year > rhs.year) {
+                return 1;
+            }
+            else {
+                if (lhs.month < rhs.month) {
+                    return -1;
+                }
+                else if (lhs.month > rhs.month) {
+                return 1;
+            }
+                else {
+                    if(lhs.day < rhs.day) {
+                        return -1;
+                    }
+                    else if(lhs.day < rhs.day) {
+                        return 1;
+                    }
+                    else return 0;
+                }
+            }
+        }
+    }
     public Team(String _name, int _year, int _month, int _day, ArrayList<CustomPokemon> _team) {
         name = _name;
         party = _team;
@@ -25,6 +58,18 @@ public class Team {
         month = _month;
         day = _day;
     }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(name).append("\n");
+        sb.append(month).append('-').append(day).append('-').append(year).append("\n");
+        for (CustomPokemon cp : party) {
+            sb.append(cp.toString()).append("\n");
+        }
+
+        return sb.toString();
+    }
+
     public int write(String loc) {
         Calendar cal = Calendar.getInstance();
         loc = loc.toLowerCase();
@@ -58,5 +103,6 @@ public class Team {
     private ArrayList<CustomPokemon> party;
     private String name;
     private final int year, month, day;
+
 
 }
