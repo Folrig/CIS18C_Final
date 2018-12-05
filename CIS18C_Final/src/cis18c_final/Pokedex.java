@@ -89,13 +89,10 @@ public class Pokedex {
                     evolutions.add(Integer.parseInt(input.get(j)));
                 }
             }
-            
-            if (input.get(3).equals(""))
-            {
-                fullpokedex.add(new Pokemon(id, name, Type.valueOf(input.get(2)), Type.valueOf("None"), evolutions));
-            } else {
-            fullpokedex.add(new Pokemon(id, name, Type.valueOf(input.get(2)), Type.valueOf(input.get(3)), evolutions));
-            }
+
+            fullpokedex.add(new Pokemon(id, name, Type.valueOf(input.get(2)),
+                    Type.valueOf(input.get(3).equals("") ? input.get(3) : "None"), evolutions));
+
             input.clear();
         }
     }
