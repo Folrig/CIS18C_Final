@@ -11,10 +11,10 @@ public enum Type {
     Ghost,
     Ground,
     Electric,
+    None,
     Normal,
     Poison,
     Psychic,
     Rock,
-    Water,
-    None;
+    Water
 }
