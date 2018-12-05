@@ -43,7 +43,7 @@ public class Team {
                     if(lhs.day < rhs.day) {
                         return -1;
                     }
-                    else if(lhs.day < rhs.day) {
+                    else if(lhs.day > rhs.day) {
                         return 1;
                     }
                     else return 0;
@@ -73,7 +73,7 @@ public class Team {
     public int write(String loc) {
         Calendar cal = Calendar.getInstance();
         loc = loc.toLowerCase();
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(loc + suffix, true))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(loc + name + suffix, true))) {
             bw.write(name);
             bw.newLine();
             bw.write(Calendar.YEAR + " " + Calendar.MONTH + " " + Calendar.DAY_OF_MONTH);
@@ -109,10 +109,14 @@ public class Team {
     }
     
     public void removeFromTeam(CustomPokemon pokemon) {
+        ArrayList<Integer> toremove = new ArrayList<>();
         for (int i = 0; i < this.party.size(); i++) {
-            if (this.party.get(i).getName() == pokemon.getName()){
-                this.party.remove(i);
+            if (this.party.get(i).getName().compareTo(pokemon.getName()) == 0){
+                toremove.add(i);
             }
+        }
+        for (int i : toremove) {
+            party.remove(i);
         }
     }
 

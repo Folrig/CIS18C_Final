@@ -2,10 +2,7 @@ package cis18c_final;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.nio.file.DirectoryStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -91,10 +88,10 @@ public class Pokedex {
                 String[] branched_evolutions;
                 if ((branched_evolutions = input.get(j).split(" ")).length > 1) {
                     for (String branched_evolution : branched_evolutions) {
-                        evolutions.add(fullpokedex.get(Integer.parseInt(branched_evolution)));
+                        evolutions.add(getPokemon(Integer.parseInt(branched_evolution)));
                     }
                 } else {
-                    evolutions.add(fullpokedex.get(Integer.parseInt(input.get(j))));
+                    evolutions.add(getPokemon(Integer.parseInt(input.get(j))));
                 }
             }
 
@@ -125,31 +122,35 @@ public class Pokedex {
 
     private void initteams() {
         Path p = Paths.get(root);
+        PathMatcher matcher = FileSystems.getDefault().getPathMatcher("glob:*.team");
+
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(p)) {
             for (Path tm : stream) {
-                ArrayList<String> input = read(tm.toString());
+                if (matcher.matches(tm)) {
+                    ArrayList<String> input = read(tm.toString());
 
-                /* name */
-                String name = input.get(0);
-                String[] date = input.get(1).split(" ");
-                int year = Integer.parseInt(date[0]);
-                int month = Integer.parseInt(date[1]);
-                int day = Integer.parseInt(date[2]);
-                ArrayList<CustomPokemon> mon = new ArrayList<>();
+                    /* name */
+                    String name = input.get(0);
+                    String[] date = input.get(1).split(" ");
+                    int year = Integer.parseInt(date[0]);
+                    int month = Integer.parseInt(date[1]);
+                    int day = Integer.parseInt(date[2]);
+                    ArrayList<CustomPokemon> mon = new ArrayList<>();
 
-                for (int i = 2; i < input.size(); ++i) {
-                    Pokemon poke;
-                    ArrayList<Move> moves = new ArrayList<>();
-                    String[] line = input.get(i).split(" ");
-                    poke = getPokemon(Integer.parseInt(line[0]));
-                    for (int j = 1; j < line.length; ++j) {
-                        moves.add(moveHashMap.get(line[j]));
+                    for (int i = 2; i < input.size(); ++i) {
+                        Pokemon poke;
+                        ArrayList<Move> moves = new ArrayList<>();
+                        String[] line = input.get(i).split(" ");
+                        poke = getPokemon(Integer.parseInt(line[0]));
+                        for (int j = 1; j < line.length; ++j) {
+                            moves.add(moveHashMap.get(line[j]));
+                        }
+
+                        mon.add(new CustomPokemon(poke, moves));
                     }
 
-                    mon.add(new CustomPokemon(poke, moves));
+                    teams.add(new Team(name, year, month, day, mon));
                 }
-
-                teams.add(new Team(name, year, month, day, mon));
             }
         } catch (IOException e) {
             System.out.println("Exception in initteams(): " + p.toAbsolutePath());
