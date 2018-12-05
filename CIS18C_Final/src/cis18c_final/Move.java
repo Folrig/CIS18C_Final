@@ -61,9 +61,9 @@ public class Move {
     @Override
     public String toString() {
         StringBuilder movStr = new StringBuilder();
-        movStr.append("Name: ").append(name).append(" Type: ");
-        movStr.append(type).append(" Base Power: ").append(basepower);
-        movStr.append(" Accuracy: ").append(accuracy).append(" Base Power Point: ");
+        movStr.append("Name: ").append(name).append("\n").append(" Type: ");
+        movStr.append(type).append("\n").append(" Base Power: ").append(basepower == 0 ? "-" : 0).append("\n");
+        movStr.append(" Accuracy: ").append(accuracy == 0 ? "-" : 0).append("\n").append(" Base Power Points: ");
         movStr.append(basepp);
         return movStr.toString();
     }

@@ -44,6 +44,8 @@ public class Pokedex {
         return fullpokedex.get(getIdFromName(name));
     }
 
+    public Move getMove(String name) { return moveHashMap.get(name); }
+
     public ArrayList<Team> getTeams() {
         return teams;
     }
