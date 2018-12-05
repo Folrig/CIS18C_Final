@@ -43,7 +43,7 @@ public class CIS18C_Final {
         Scanner input = new Scanner(System.in);
         Integer menuChoice = 0;
         Pokedex pokedex = new Pokedex();
-        
+        String s;
         while (menuChoice != 9) {
             System.out.println("Welcome to the Pokedex. Please select a menu option.");
             printMenu();
@@ -62,13 +62,13 @@ public class CIS18C_Final {
                     System.out.println("Which Pokemon would you like information for?");
                     String pokemonByName = null;
                     pokemonByName = input.nextLine();
-                    pokedex.getPokemon(pokemonByName).toString();
+                    System.out.println(pokedex.getPokemon(pokemonByName));
                 }
                 if (subMenuChoice == 2) {
                     System.out.println("Which ID would you like information for?");
                     Integer pokemonByID = 0;
                     pokemonByID = input.nextInt();
-                    pokedex.getPokemon(pokemonByID).toString();
+                    System.out.println(pokedex.getPokemon(pokemonByID));
                 }
             }
             if (menuChoice == 2) {
@@ -85,6 +85,9 @@ public class CIS18C_Final {
             }
             if (menuChoice == 5) {
                 // TODO: Query all the teams in the pokedex team array
+            }
+            if (menuChoice == 8) {
+
             }
             else {
                 System.out.println("Please enter a valid menu choice.");
