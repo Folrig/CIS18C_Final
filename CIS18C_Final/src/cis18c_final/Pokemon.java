@@ -2,8 +2,8 @@ package cis18c_final;
 
 import java.util.ArrayList;
 
-public class iPokemon {
-    /* TODO: handle branched evolutions like Eevee */
+public class Pokemon {
+
     public Pokemon() {
         id = 0;
         name = "";

@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+// TODO: Fix initmove where data is a dash - because parseInt can't take that
 public class Pokedex {
 
     public Pokedex() {
@@ -70,7 +71,6 @@ public class Pokedex {
         /* this assumes that the format is correct and consistent */
         for (i = 1; i <= 151; ++i) {
             input = read(String.format(root + "%d", i));
-            input.clear();
 
             ArrayList<Integer> evolutions = new ArrayList<>();
             int id = Integer.parseInt(input.get(0));
@@ -78,18 +78,25 @@ public class Pokedex {
 
             translate.put(name, id);
 
-            for (i = 4; i < input.size(); ++i) {
+            for (int j = 4; j < input.size(); ++j) {
                 /* branched evolution?  (eevee)*/
                 String[] branched_evolutions;
-                if ((branched_evolutions = input.get(i).split(" ")).length > 1) {
+                if ((branched_evolutions = input.get(j).split(" ")).length > 1) {
                     for (String branched_evolution : branched_evolutions) {
                         evolutions.add(Integer.parseInt(branched_evolution));
                     }
                 } else {
-                    evolutions.add(Integer.parseInt(input.get(i)));
+                    evolutions.add(Integer.parseInt(input.get(j)));
                 }
             }
+            
+            if (input.get(3).equals(""))
+            {
+                fullpokedex.add(new Pokemon(id, name, Type.valueOf(input.get(2)), Type.valueOf("None"), evolutions));
+            } else {
             fullpokedex.add(new Pokemon(id, name, Type.valueOf(input.get(2)), Type.valueOf(input.get(3)), evolutions));
+            }
+            input.clear();
         }
     }
 
@@ -148,7 +155,7 @@ public class Pokedex {
 
     }
 
-    private static final String root = "CIS18C_Final/src/cis18c_final/data/";
+    private static final String root = "src/cis18c_final/data/";
     private final HashMap<String, Integer> translate;
     private final HashMap<String, Move> moveHashMap;
     private final ArrayList<Team> teams;

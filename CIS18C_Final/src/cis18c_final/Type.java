@@ -15,5 +15,6 @@ public enum Type {
     Poison,
     Psychic,
     Rock,
-    Water;
+    Water,
+    None;
 }
