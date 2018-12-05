@@ -63,7 +63,7 @@ public class Pokedex {
                 input.add(str);
             }
         } catch (IOException e) {
-            System.out.println("Could not read file: " + file.toAbsolutePath());
+            System.out.println("Error: " + e);
         }
 
         return input;
@@ -75,14 +75,14 @@ public class Pokedex {
         /* working directory is currently at the root of the git repository */
         /* this assumes that the format is correct and consistent */
         for (i = 1; i <= 151; ++i) {
-            input = read(String.format(root + "%d", i));
+            input = read(root + i);
 
             ArrayList<Pokemon> evolutions = new ArrayList<>();
 
             int id = Integer.parseInt(input.get(0));
             String name = input.get(1);
             Type t1 = Type.valueOf(input.get(2));
-            Type t2 = Type.valueOf(input.get(3).equals("") ? input.get(3) : "None");
+            Type t2 = input.get(3).length() == 0 ? Type.None : Type.valueOf(input.get(3));
 
             translate.put(name, id);
 
@@ -98,8 +98,7 @@ public class Pokedex {
                 }
             }
 
-            fullpokedex.add(new Pokemon(id, name, Type.valueOf(input.get(2)),
-                    Type.valueOf(input.get(3).equals("") ? input.get(3) : "None"), evolutions));
+            fullpokedex.add(new Pokemon(id, name, t1, t2, evolutions));
 
             input.clear();
         }
@@ -158,7 +157,7 @@ public class Pokedex {
 
     }
 
-    private static final String root = "src/cis18c_final/data/";
+    private static final String root = "CIS18C_Final/src/cis18c_final/data/";
     private final HashMap<String, Integer> translate;
     private final HashMap<String, Move> moveHashMap;
     private final ArrayList<Team> teams;
