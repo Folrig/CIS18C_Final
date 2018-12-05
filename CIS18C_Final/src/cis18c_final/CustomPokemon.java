@@ -18,7 +18,14 @@ public class CustomPokemon extends Pokemon {
     }
 
     private ArrayList<Move> movelist;
-//    public String toString() {
-//        String CP
-//    }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getName()).append(" ");
+        for (Move mv : movelist)
+            sb.append(mv.getName()).append(" ");
+        sb.delete(sb.length() - 1, sb.length() - 1);
+
+        return sb.toString();
+   }
 }

@@ -15,12 +15,16 @@ public class Pokedex {
     public Pokedex() {
         translate = new HashMap<>();
         teams = new ArrayList<>();
-        fullpokedex = new ArrayList<>();
+        fullpokedex = new ArrayList<>(151);
         moveHashMap = new HashMap<>();
         movelist = new ArrayList<>();
 
         for (int i = 0; i < Type.values().length; ++i) {
             movelist.add(new ArrayList<>());
+        }
+
+        for (int i = 0; i < 151; ++i) {
+            fullpokedex.add(new Pokemon());
         }
 
         initdex();
@@ -64,7 +68,6 @@ public class Pokedex {
     }
 
     private void initdex() {
-        String str;
         int i;
         ArrayList<String> input;
         /* working directory is currently at the root of the git repository */
@@ -72,9 +75,12 @@ public class Pokedex {
         for (i = 1; i <= 151; ++i) {
             input = read(String.format(root + "%d", i));
 
-            ArrayList<Integer> evolutions = new ArrayList<>();
+            ArrayList<Pokemon> evolutions = new ArrayList<>();
+
             int id = Integer.parseInt(input.get(0));
             String name = input.get(1);
+            Type t1 = Type.valueOf(input.get(2));
+            Type t2 = Type.valueOf(input.get(3).equals("") ? input.get(3) : "None");
 
             translate.put(name, id);
 
@@ -83,10 +89,10 @@ public class Pokedex {
                 String[] branched_evolutions;
                 if ((branched_evolutions = input.get(j).split(" ")).length > 1) {
                     for (String branched_evolution : branched_evolutions) {
-                        evolutions.add(Integer.parseInt(branched_evolution));
+                        evolutions.add(fullpokedex.get(Integer.parseInt(branched_evolution)));
                     }
                 } else {
-                    evolutions.add(Integer.parseInt(input.get(j)));
+                    evolutions.add(fullpokedex.get(Integer.parseInt(input.get(j))));
                 }
             }
 
@@ -143,8 +149,6 @@ public class Pokedex {
                 }
 
                 teams.add(new Team(name, year, month, day, mon));
-
-
             }
         } catch (IOException e) {
             System.out.println("Exception in initteams(): " + p.toAbsolutePath());

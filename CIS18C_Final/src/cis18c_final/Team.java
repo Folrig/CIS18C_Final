@@ -115,7 +115,7 @@ public class Team {
             }
         }
     }
-    
+
     private static final String suffix = ".team";
     private ArrayList<CustomPokemon> party;
     private String name;
