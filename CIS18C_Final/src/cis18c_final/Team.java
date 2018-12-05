@@ -121,6 +121,4 @@ public class Team {
     private ArrayList<CustomPokemon> party;
     private String name;
     private final int year, month, day;
-
-
 }
