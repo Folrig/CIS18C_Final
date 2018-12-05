@@ -18,7 +18,6 @@ public class Team {
         Pokemon2.id etc..
     */
 
-     */
     public static class ByName implements Comparator<Team> {
         @Override
         public int compare(Team lhs, Team rhs) {

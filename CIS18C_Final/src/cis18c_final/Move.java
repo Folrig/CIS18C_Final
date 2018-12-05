@@ -58,21 +58,14 @@ public class Move {
         basepp = _basepp;
     }
 
+    @Override
     public String toString() {
         StringBuilder movStr = new StringBuilder();
-        movStr. = "Name: ";
-        movStr += name;
-        movStr += " Type: ";
-        movStr += type;
-        movStr += " Base Power: ";
-        movStr += basepower;
-        movStr += " Accuracy ";
-        movStr += accuracy;
-        movStr += " Base Power Point: ";
-        movStr += basepp;
-        movStr.append("Name: ").append(movStr.name).append(" Type: ");
-        movStr.append(movStr.type).append(" Base Power: ").append(movStr.basepower)
-        return movStr;
+        movStr.append("Name: ").append(name).append(" Type: ");
+        movStr.append(type).append(" Base Power: ").append(basepower);
+        movStr.append(" Accuracy: ").append(accuracy).append(" Base Power Point: ");
+        movStr.append(basepp);
+        return movStr.toString();
     }
 
     public String getName() {
