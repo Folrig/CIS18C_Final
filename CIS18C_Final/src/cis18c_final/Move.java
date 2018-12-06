@@ -27,29 +27,6 @@ public class Move {
                 return 1;
         }
     }
-    private class ByAccuracy implements Comparator<Move> {
-        @Override
-        public int compare(Move t, Move t1){
-            if (t.accuracy < t1.accuracy)
-                return -1;
-            else if (t.accuracy == t1.accuracy)
-                return 0;
-            else
-                return 1;
-        }
-    }
-    public class ByBasePowerPoints implements Comparator<Move>{
-        @Override
-        public int compare(Move t, Move t1) {
-            if (t.basepp < t1.basepp)
-                return -1;
-            else if (t.basepp == t1.basepp)
-                return 0;
-            else
-                return 1;
-        }
-    }
-
     public Move() {
         name = "";
         type = null;

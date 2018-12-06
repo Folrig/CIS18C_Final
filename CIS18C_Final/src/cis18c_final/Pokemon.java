@@ -12,6 +12,7 @@ public class Pokemon {
         evolutions = new ArrayList<>();
     }
 
+/*
     public Pokemon(int _id, String _name, Type _type1, Type _type2,
                     ArrayList<Pokemon> _evolutions) {
         id = _id;
@@ -20,6 +21,7 @@ public class Pokemon {
         type2 = _type2;
         evolutions = _evolutions;
     }
+*/
 
     public Pokemon(Pokemon p) {
         id = p.id;

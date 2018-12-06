@@ -12,7 +12,6 @@ public class TeamCreate implements MenuItem {
 
     public void execute() {
 
-        Scanner input = new Scanner(System.in);
         String name;
         ArrayList<CustomPokemon> party;
         String[] teamPokemonNames = new String[6];

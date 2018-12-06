@@ -1,7 +1,6 @@
 package cis18c_final;
 
 import java.util.ArrayList;
-// TODO: FIX TOSTRING
 
 public class CustomPokemon extends Pokemon {
     public CustomPokemon(ArrayList<Move> _movelist) {
