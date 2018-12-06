@@ -73,12 +73,16 @@ public class CIS18C_Final {
             }
             if (menuChoice == 2) {
                 // TODO: Finish implementation of searching for a single move
-                String moveToQuery = null;
-                System.out.println("What move would you like to look at?");
+                MoveQuery mq = new MoveQuery(pokedex, input);
+                mq.execute();
+                //String moveToQuery = null;
+                //System.out.println("What move would you like to look at?");
                 // pokedex.moveHashMap.get(moveToQuery);    this is private? possibly need a getter or to change access
             }
             if (menuChoice == 3) {
                 // TODO: Return an arraylist of a type of moves
+                MovelistQuery mlq = new MovelistQuery(pokedex, input);
+                mlq.execute();
             }
             if (menuChoice == 4) {
                 // TODO: Create a custom team
