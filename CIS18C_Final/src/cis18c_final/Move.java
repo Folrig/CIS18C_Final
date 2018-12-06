@@ -9,14 +9,14 @@ public class Move {
         100
         25
 */
-    public  class ByName implements Comparator<Move> {
+    private class ByName implements Comparator<Move> {
         @Override
         public int compare(Move t, Move t1) {
             return t.name.compareTo(t1.name);
         }
     }
 
-    public  class ByPower implements Comparator<Move> {
+    private class ByPower implements Comparator<Move> {
         @Override
         public int compare(Move t, Move t1) {
             if (t.basepower < t1.basepower)
@@ -27,7 +27,7 @@ public class Move {
                 return 1;
         }
     }
-    public  class ByAccuracy implements Comparator<Move> {
+    private class ByAccuracy implements Comparator<Move> {
         @Override
         public int compare(Move t, Move t1){
             if (t.accuracy < t1.accuracy)
@@ -38,7 +38,7 @@ public class Move {
                 return 1;
         }
     }
-    public  class ByBasePowerPoints implements Comparator<Move>{
+    public class ByBasePowerPoints implements Comparator<Move>{
         @Override
         public int compare(Move t, Move t1) {
             if (t.basepp < t1.basepp)
@@ -50,6 +50,14 @@ public class Move {
         }
     }
 
+    public Move() {
+        name = "";
+        type = null;
+        basepower = accuracy = basepp = 0;
+        BY_NAME = new ByName();
+        BY_POWER = new ByPower();
+    }
+
     public Move(String _name, Type _type, int _basepower, int _accuracy, int _basepp) {
         name = _name;
         type = _type;
@@ -58,6 +66,7 @@ public class Move {
         basepp = _basepp;
 
         BY_NAME = new ByName();
+        BY_POWER = new ByPower();
     }
 
     @Override
@@ -77,5 +86,6 @@ public class Move {
     private final String name;
     private final Type type;
     private final int basepower, accuracy, basepp;
-    private final Comparator<Move> BY_NAME;
+    public final Comparator<Move> BY_NAME;
+    public final Comparator<Move> BY_POWER;
 }

@@ -41,6 +41,10 @@ public class Pokedex {
         return fullpokedex.get(getIdFromName(name));
     }
 
+    public ArrayList<ArrayList<Move>> getMoves() {
+        return movelist;
+    }
+
     public Move getMove(String name) {
         return moveHashMap.get(name);
     }
@@ -110,6 +114,8 @@ public class Pokedex {
 
             input.clear();
         }
+
+
     }
 
     private void initmoves() {
@@ -128,6 +134,11 @@ public class Pokedex {
             sublist.add(mv);
 
             moveHashMap.put(input.get(i).toLowerCase(), mv);
+        }
+
+        Move jockey = new Move();
+        for (ArrayList<Move> sublist : movelist) {
+            Collections.sort(sublist, jockey.BY_NAME);
         }
     }
 
