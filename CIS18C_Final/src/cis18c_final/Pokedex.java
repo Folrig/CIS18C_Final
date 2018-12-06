@@ -110,7 +110,12 @@ public class Pokedex {
                 }
             }
 
-            fullpokedex.add(new Pokemon(id, name, t1, t2, evolutions));
+            Pokemon p = fullpokedex.get(i);
+            p.setId(id);
+            p.setName(name);
+            p.setType1(t1);
+            p.setType2(t2);
+            p.setEvolutions(evolutions);
 
             input.clear();
         }

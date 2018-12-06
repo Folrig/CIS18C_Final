@@ -66,6 +66,7 @@ public class Pokemon {
         evolutions = _evolutions;
     }
 
+
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(id).append("\n");

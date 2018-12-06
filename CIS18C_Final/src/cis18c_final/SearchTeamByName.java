@@ -27,6 +27,9 @@ public class SearchTeamByName implements MenuItem {
         int ret = Collections.binarySearch(copy, new Team(name), temp.BY_NAME);
         if (ret >= 0)
             System.out.println(copy.get(ret));
+        else {
+            System.out.println("No such name; exiting");
+        }
     }
 
     private Pokedex pd;
