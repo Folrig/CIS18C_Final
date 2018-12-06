@@ -18,7 +18,7 @@ public class MoveQuery implements MenuItem {
                 System.out.println("We don't have move " + s);
             }
             else {
-                System.out.println(mv);
+                System.out.println(mv.toString());
                 return;
             }
         }
