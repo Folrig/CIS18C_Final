@@ -4,12 +4,12 @@ package cis18c_final;
 import java.util.Scanner;
 
 public class PokemonQuery implements MenuItem {
-    public PokemonQuery(Pokedex _pd) {
+    public PokemonQuery(Pokedex _pd, Scanner _input) {
         pd = _pd;
+        input = _input;
     }
 
     public void execute() {
-        Scanner input = new Scanner(System.in);
         Integer id;
         Pokemon pokemon;
         while (true) {
@@ -17,27 +17,26 @@ public class PokemonQuery implements MenuItem {
             String p = input.nextLine();
             id = Integer.getInteger(p);
 
-
-            if (id != null)
-                pokemon = pd.getPokemon(id);
+            if (id == null)
+                pokemon = pd.getPokemon(p.toLowerCase());
             else {
                 try {
-                    pokemon = pd.getPokemon(p);
+                    pokemon = pd.getPokemon(id);
                 } catch (IndexOutOfBoundsException e) {
                     System.out.println("ID from 1-151 only!");
                     continue;
                 }
             }
-            if (pokemon == null) {
+            if (pokemon != null) {
+                System.out.println(pokemon);
+                return;
+            }
+            else {
                 System.out.println("We don't have a " + p + " here.");
-                continue;
             }
         }
-
-
-
-
     }
 
-    private Pokedex pd;
+    private final Pokedex pd;
+    private final Scanner input;
 }

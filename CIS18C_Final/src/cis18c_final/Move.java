@@ -9,14 +9,14 @@ public class Move {
         100
         25
 */
-    public static class ByName implements Comparator<Move> {
+    public  class ByName implements Comparator<Move> {
         @Override
         public int compare(Move t, Move t1) {
             return t.name.compareTo(t1.name);
         }
     }
 
-    public static class ByPower implements Comparator<Move> {
+    public  class ByPower implements Comparator<Move> {
         @Override
         public int compare(Move t, Move t1) {
             if (t.basepower < t1.basepower)
@@ -27,7 +27,7 @@ public class Move {
                 return 1;
         }
     }
-    public static class ByAccuracy implements Comparator<Move>{
+    public  class ByAccuracy implements Comparator<Move> {
         @Override
         public int compare(Move t, Move t1){
             if (t.accuracy < t1.accuracy)
@@ -38,7 +38,7 @@ public class Move {
                 return 1;
         }
     }
-    public static class ByBasePowerPoints implements Comparator<Move>{
+    public  class ByBasePowerPoints implements Comparator<Move>{
         @Override
         public int compare(Move t, Move t1) {
             if (t.basepp < t1.basepp)
@@ -56,6 +56,8 @@ public class Move {
         basepower = _basepower;
         accuracy = _accuracy;
         basepp = _basepp;
+
+        BY_NAME = new ByName();
     }
 
     @Override
@@ -75,4 +77,5 @@ public class Move {
     private final String name;
     private final Type type;
     private final int basepower, accuracy, basepp;
+    private final Comparator<Move> BY_NAME;
 }

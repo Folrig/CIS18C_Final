@@ -4,9 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
-// TODO: Fix initmove where data is a dash - because parseInt can't take that
 public class Pokedex {
 
     public Pokedex() {
@@ -41,7 +41,18 @@ public class Pokedex {
         return fullpokedex.get(getIdFromName(name));
     }
 
-    public Move getMove(String name) { return moveHashMap.get(name); }
+    public Move getMove(String name) {
+        return moveHashMap.get(name);
+    }
+
+    public Path getRoot() {
+        return Paths.get(root);
+    }
+
+    public void deleteTeam(String name) {
+        Team temp = new Team(name);
+        teams.remove(Collections.binarySearch(teams, temp, temp.BY_NAME));
+    }
 
     public ArrayList<Team> getTeams() {
         return teams;
@@ -81,7 +92,7 @@ public class Pokedex {
             Type t1 = Type.valueOf(input.get(2));
             Type t2 = input.get(3).length() == 0 ? Type.None : Type.valueOf(input.get(3));
 
-            translate.put(name, id);
+            translate.put(name.toLowerCase(), id);
 
             for (int j = 4; j < input.size(); ++j) {
                 /* branched evolution?  (eevee)*/
@@ -116,7 +127,7 @@ public class Pokedex {
 
             sublist.add(mv);
 
-            moveHashMap.put(input.get(i), mv);
+            moveHashMap.put(input.get(i).toLowerCase(), mv);
         }
     }
 

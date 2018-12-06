@@ -11,6 +11,7 @@ import java.util.Comparator;
 import java.util.Date;
 
 public class Team {
+
     /* file output for name.team
         name
         YY MM DD
@@ -18,38 +19,33 @@ public class Team {
         Pokemon2.id etc..
     */
 
-    public static class ByName implements Comparator<Team> {
+    public class ByName implements Comparator<Team> {
         @Override
         public int compare(Team lhs, Team rhs) {
             return lhs.name.compareTo(rhs.name);
         }
     }
-    public static class ByDate implements Comparator<Team> {
-        @Override public int compare(Team lhs, Team rhs) {
-            if (lhs.year < rhs.year) {
-                return -1;
-            }
-            else if (lhs.year > rhs.year) {
-                return 1;
-            }
-            else {
-                if (lhs.month < rhs.month) {
-                    return -1;
-                }
-                else if (lhs.month > rhs.month) {
-                return 1;
-            }
-                else {
-                    if(lhs.day < rhs.day) {
-                        return -1;
-                    }
-                    else if(lhs.day > rhs.day) {
-                        return 1;
-                    }
-                    else return 0;
-                }
-            }
+
+    public class ByDate implements Comparator<Team> {
+        @Override
+        public int compare(Team lhs, Team rhs) {
+            if (lhs.year < rhs.year) return -1;
+            if (lhs.year > rhs.year) return 1;
+            if (lhs.month < rhs.month) return -1;
+            if (lhs.month > rhs.month) return 1;
+            if (lhs.day < rhs.day) return -1;
+            if (lhs.day > rhs.day) return 1;
+            return 0;
         }
+
+    }
+
+    public Team(String _name) {
+        BY_DATE = new ByDate();
+        BY_NAME = new ByName();
+
+        year = month = day = 0;
+        name = _name;
     }
     public Team(String _name, int _year, int _month, int _day, ArrayList<CustomPokemon> _team) {
         name = _name;
@@ -57,6 +53,9 @@ public class Team {
         year = _year;
         month = _month;
         day = _day;
+
+        BY_DATE = new ByDate();
+        BY_NAME = new ByName();
     }
 
     public String toString() {
@@ -124,4 +123,6 @@ public class Team {
     private ArrayList<CustomPokemon> party;
     private String name;
     private final int year, month, day;
+    public final Comparator<Team> BY_DATE;
+    public final Comparator<Team> BY_NAME;
 }
