@@ -15,7 +15,7 @@ public class MoveQuery implements MenuItem {
 
             Move mv = pd.getMove(s.toLowerCase());
             if (mv == null) {
-                System.out.println("We don't have move " + mv);
+                System.out.println("We don't have move " + s);
             }
             else {
                 System.out.println(mv);

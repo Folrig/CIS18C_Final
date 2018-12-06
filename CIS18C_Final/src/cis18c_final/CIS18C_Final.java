@@ -34,66 +34,40 @@ public class CIS18C_Final {
         System.out.println("9. Quit the Pokedex");
     }
 
-    public static void printMoveMenu() {
-        System.out.println("1. Query moves by type.");
-        System.out.println("2. Query moves by power.");
+    public static ArrayList<MenuItem> initMenu(Scanner input, Pokedex pd) {
+        ArrayList<MenuItem> execMenu = new ArrayList<>();
+        execMenu.add(new PokemonQuery(pd, input));
+        execMenu.add(new MoveQuery(pd, input));
+        execMenu.add(new MovelistQuery(pd, input));
+        execMenu.add(new TeamCreate(pd, input));
+        execMenu.add(new TeamlistQuery(pd));
+        execMenu.add(new SearchTeamByDate(pd, input));
+        execMenu.add(new SearchTeamByName(pd, input));
+        execMenu.add(new DeleteTeam(pd, input));
+        execMenu.add(new Exit());
+
+        return execMenu;
     }
-    
+
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         Integer menuChoice = 0;
         Pokedex pokedex = new Pokedex();
-        String s;
-        while (menuChoice != 9) {
-            System.out.println("Welcome to the Pokedex. Please select a menu option.");
-            printMenu();
-            menuChoice = input.nextInt();
-            
-            if (menuChoice == 1) {
-                Integer subMenuChoice = 0;
-                System.out.printf("Would you like to search by%n1: Name%n2: ID%n");
-                subMenuChoice = input.nextInt();
-                while (subMenuChoice < 0 || subMenuChoice > 1) {
-                    System.out.printf("Please enter a valid menu choice.");
-                    subMenuChoice = input.nextInt();
-                }
-                
-                if (subMenuChoice == 1) {
-                    System.out.println("Which Pokemon would you like information for?");
-                    String pokemonByName = null;
-                    pokemonByName = input.nextLine();
-                    System.out.println(pokedex.getPokemon(pokemonByName));
-                }
-                if (subMenuChoice == 2) {
-                    System.out.println("Which ID would you like information for?");
-                    Integer pokemonByID = 0;
-                    pokemonByID = input.nextInt();
-                    System.out.println(pokedex.getPokemon(pokemonByID));
-                }
-            }
-            if (menuChoice == 2) {
-                // TODO: Finish implementation of searching for a single move
-                String moveToQuery = null;
-                System.out.println("What move would you like to look at?");
-                // pokedex.moveHashMap.get(moveToQuery);    this is private? possibly need a getter or to change access
-            }
-            if (menuChoice == 3) {
-                // TODO: Return an arraylist of a type of moves
-            }
-            if (menuChoice == 4) {
-                // TODO: Create a custom team
-            }
-            if (menuChoice == 5) {
-                // TODO: Query all the teams in the pokedex team array
-            }
-            if (menuChoice == 8) {
+        ArrayList<MenuItem> execMenu = initMenu(input, pokedex);
 
+        System.out.println("Welcome to Generation I Pokedex");
+
+        do {
+            printMenu();
+            System.out.print("Option: ");
+            menuChoice = input.nextInt();
+            if (menuChoice < 1 || menuChoice > execMenu.size()) {
+                System.out.print("Invalid choice.");
             }
             else {
-                System.out.println("Please enter a valid menu choice.");
+                execMenu.get(menuChoice).execute();
             }
-        }
-        
+        } while (menuChoice != execMenu.size());
         
     }
 }

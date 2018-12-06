@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-public class MovelistQuery {
+public class MovelistQuery implements MenuItem {
     public MovelistQuery(Pokedex _pd, Scanner _input) {
         pd = _pd;
         input = _input;
