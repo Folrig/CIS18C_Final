@@ -184,6 +184,11 @@ public class Pokedex {
         }
 
     }
+    
+        public void addTeam(Team t)
+    {
+        teams.add(t);
+    }
 
     private static final String root = "CIS18C_Final/src/cis18c_final/data/";
     private final HashMap<String, Integer> translate;
