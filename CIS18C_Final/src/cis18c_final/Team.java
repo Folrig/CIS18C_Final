@@ -4,7 +4,6 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Comparator;
 
 public class Team {
@@ -44,6 +43,14 @@ public class Team {
         year = month = day = 0;
         name = _name;
     }
+
+    public Team() {
+        BY_DATE = new ByDate();
+        BY_NAME = new ByName();
+        year = month = day = 0;
+        name = "";
+    }
+
     public Team(String _name, int _year, int _month, int _day, ArrayList<CustomPokemon> _team) {
         name = _name;
         party = _team;
@@ -67,12 +74,10 @@ public class Team {
     }
 
     public int write(String loc) {
-        Calendar cal = Calendar.getInstance();
-        loc = loc.toLowerCase();
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(loc + name + suffix, true))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(loc + name + suffix, false))) {
             bw.write(name);
             bw.newLine();
-            bw.write(Calendar.YEAR + " " + Calendar.MONTH + " " + Calendar.DAY_OF_MONTH);
+            bw.write(year + " " + month + " " + day);
             bw.newLine();
             for (CustomPokemon poke : party) {
                 StringBuilder sb = new StringBuilder();

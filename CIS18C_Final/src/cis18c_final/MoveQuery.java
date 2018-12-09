@@ -9,8 +9,9 @@ public class MoveQuery implements MenuItem {
     }
     public void execute() {
         String s;
-        System.out.print("Enter the move's name: ");
         while (true) {
+            System.out.print("Enter the move's name: ");
+
             s = input.nextLine();
 
             Move mv = pd.getMove(s.toLowerCase());

@@ -9,13 +9,13 @@ import java.util.HashMap;
 
 public class Pokedex {
 
-    public Pokedex() {
+    public Pokedex(String data) {
         translate = new HashMap<>();
         teams = new ArrayList<>();
         fullpokedex = new ArrayList<>(151);
         moveHashMap = new HashMap<>();
         movelist = new ArrayList<>();
-
+        root = data;
         for (int i = 0; i < Type.values().length; ++i) {
             movelist.add(new ArrayList<>());
         }
@@ -190,7 +190,7 @@ public class Pokedex {
         teams.add(t);
     }
 
-    private static final String root = "CIS18C_Final/src/cis18c_final/data/";
+    private final String root;
     private final HashMap<String, Integer> translate;
     private final HashMap<String, Move> moveHashMap;
     private final ArrayList<Team> teams;
