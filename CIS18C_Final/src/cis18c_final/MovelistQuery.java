@@ -22,7 +22,7 @@ public class MovelistQuery implements MenuItem {
             if (s.equals("t")) {
                 System.out.print("What type? (Reminder, this is Gen I only so no Steel or Dark) ");
                 s = input.nextLine();
-                s = s.toLowerCase().substring(0, 1) + s.substring(1);
+                s = s.toUpperCase().substring(0, 1) + s.substring(1);
                 Type type;
                 try  {
                     type = Type.valueOf(s);

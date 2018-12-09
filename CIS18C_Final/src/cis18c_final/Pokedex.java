@@ -29,16 +29,21 @@ public class Pokedex {
         initteams();
     }
 
-    private Integer getIdFromName(String name) {
+    private Integer getIdFromName(String name){
         return translate.get(name);
     }
 
     public Pokemon getPokemon(int id) {
-        return fullpokedex.get(id);
+        if (id > fullpokedex.size())
+            return null;
+        return fullpokedex.get(id - 1);
     }
     
     public Pokemon getPokemon(String name) {
-        return fullpokedex.get(getIdFromName(name));
+        Integer id = getIdFromName(name);
+        if (id == null)
+            return null;
+        return fullpokedex.get(id - 1);
     }
 
     public ArrayList<ArrayList<Move>> getMoves() {
@@ -63,7 +68,6 @@ public class Pokedex {
     }
     /* utility functions */
     /* init pokedex and translation hashmap */
-    /* TODO: possibly move the file reading on its own function */
 
     private ArrayList<String> read(String dir)  {
         Path file = Paths.get(dir);
@@ -86,8 +90,8 @@ public class Pokedex {
         ArrayList<String> input;
         /* working directory is currently at the root of the git repository */
         /* this assumes that the format is correct and consistent */
-        for (i = 1; i <= 151; ++i) {
-            input = read(root + i);
+        for (i = 0; i < 151; ++i) {
+            input = read(root + (i + 1));
 
             ArrayList<Pokemon> evolutions = new ArrayList<>();
 
@@ -105,7 +109,8 @@ public class Pokedex {
                     for (String branched_evolution : branched_evolutions) {
                         evolutions.add(getPokemon(Integer.parseInt(branched_evolution)));
                     }
-                } else {
+                }
+                else {
                     evolutions.add(getPokemon(Integer.parseInt(input.get(j))));
                 }
             }
@@ -119,8 +124,6 @@ public class Pokedex {
 
             input.clear();
         }
-
-
     }
 
     private void initmoves() {
@@ -149,11 +152,12 @@ public class Pokedex {
 
     private void initteams() {
         Path p = Paths.get(root);
-        PathMatcher matcher = FileSystems.getDefault().getPathMatcher("glob:*.team");
+        PathMatcher matcher = FileSystems.getDefault().getPathMatcher("glob:**.team");
 
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(p)) {
             for (Path tm : stream) {
                 if (matcher.matches(tm)) {
+                    System.out.println(tm.toString());
                     ArrayList<String> input = read(tm.toString());
 
                     /* name */
@@ -164,15 +168,13 @@ public class Pokedex {
                     int day = Integer.parseInt(date[2]);
                     ArrayList<CustomPokemon> mon = new ArrayList<>();
 
-                    for (int i = 2; i < input.size(); ++i) {
+                    for (int i = 2; i < input.size(); i = i + 5) {
+                        System.out.println(i);
                         Pokemon poke;
                         ArrayList<Move> moves = new ArrayList<>();
-                        String[] line = input.get(i).split(" ");
-                        poke = getPokemon(Integer.parseInt(line[0]));
-                        for (int j = 1; j < line.length; ++j) {
-                            moves.add(moveHashMap.get(line[j]));
-                        }
-
+                        poke = getPokemon(Integer.parseInt(input.get(i)));
+                        for (int j = i; j < i + 4; ++j)
+                            moves.add(moveHashMap.get(input.get(j)));
                         mon.add(new CustomPokemon(poke, moves));
                     }
 
@@ -185,7 +187,7 @@ public class Pokedex {
 
     }
     
-        public void addTeam(Team t)
+    public void addTeam(Team t)
     {
         teams.add(t);
     }

@@ -10,6 +10,11 @@ public class TeamlistQuery implements MenuItem {
     public void execute() {
         ArrayList<Team> teams = pd.getTeams();
 
+        if (teams.isEmpty()) {
+            System.out.println("No teams loaded!");
+            return;
+        }
+
         for (Team t : teams) {
             System.out.println(t);
         }

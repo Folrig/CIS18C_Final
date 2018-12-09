@@ -46,9 +46,14 @@ public class CIS18C_Final {
             return;
         }
 
+        System.out.println("args: ");
+        for (String s : args) {
+            System.out.println(s);
+        }
+
         Scanner input = new Scanner(System.in);
-        Integer menuChoice;
-        Pokedex pokedex = new Pokedex(args[1]);
+        int menuChoice;
+        Pokedex pokedex = new Pokedex(args[0]);
         ArrayList<MenuItem> execMenu = initMenu(input, pokedex);
 
         System.out.println("Welcome to Generation I Pokedex");
@@ -57,13 +62,14 @@ public class CIS18C_Final {
             printMenu();
             System.out.print("Option: ");
             menuChoice = input.nextInt();
+            input.nextLine();
             if (menuChoice < 1 || menuChoice > execMenu.size()) {
                 System.out.print("Invalid choice.");
             }
             else {
-                execMenu.get(menuChoice).execute();
+                execMenu.get(menuChoice - 1).execute();
             }
         } while (menuChoice != execMenu.size());
-        
+
     }
 }

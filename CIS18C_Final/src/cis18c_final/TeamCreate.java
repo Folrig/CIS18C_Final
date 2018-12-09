@@ -10,32 +10,46 @@ public class TeamCreate implements MenuItem {
         input = _input;
     }
 
+    private boolean isInteger(String s) {
+        return isInteger(s,10);
+    }
+
+    private boolean isInteger(String s, int radix) {
+        if(s.isEmpty()) return false;
+        for (int i = 0; i < s.length(); i++) {
+            if (i == 0 && s.charAt(i) == '-') {
+                if(s.length() == 1)
+                    return false;
+                else
+                    continue;
+            }
+            if (Character.digit(s.charAt(i),radix) < 0)
+                return false;
+        }
+        return true;
+    }
+
     public void execute() {
 
         String name;
         String p;
         ArrayList<CustomPokemon> party = new ArrayList<>(6);
-        Integer id;
         Pokemon pokemon;
         int i = 0;
         System.out.println("Enter your new team's name: ");
         name = input.nextLine();
 
         System.out.println("Please enter the team's 6 pokemon:");
-        while (i != party.size()) {
+        while (i < 6) {
             System.out.println("Enter Pokemon party member #" + (i + 1) + "\'s name or id.");
             p = input.nextLine();
-            id = Integer.getInteger(p);
-            if (id == null)
+            if (!isInteger(p)) {
                 pokemon = pd.getPokemon(p.toLowerCase());
-            else {
-                try {
-                    pokemon = pd.getPokemon(id);
-                } catch (IndexOutOfBoundsException e) {
-                    System.out.println("ID from 1-151 only!");
-                    continue;
-                }
             }
+            else {
+                pokemon = pd.getPokemon(Integer.parseInt(p));
+            }
+
             if (pokemon == null) {
                 System.out.println("We don't have a " + p + " here.");
                 continue;
@@ -43,7 +57,7 @@ public class TeamCreate implements MenuItem {
 
             ArrayList<Move> pokemonMoveList = new ArrayList<>(4);    //creates a new arraylist of moves per loop/pokemon
             int j = 0;
-            while (j != pokemonMoveList.size()) {
+            while (j < 4) {
                 System.out.println("What is " + pokemon.getName() + "\'s #" + (j + 1) + " move?");
                 while (true) {
                     System.out.print("Enter the move's name: ");
@@ -51,9 +65,9 @@ public class TeamCreate implements MenuItem {
 
                     Move mv = pd.getMove(p.toLowerCase());
                     if (mv == null) {
-                        System.out.println("We don't have move " + p);
+                        System.out.println("We don't have  " + (isInteger(p) ? Integer.parseInt(p) : p) + "!");
                     } else {
-                        pokemonMoveList.set(j, mv);
+                        pokemonMoveList.add(mv);
                         break;
                     }
                 }
@@ -61,14 +75,15 @@ public class TeamCreate implements MenuItem {
             }
 
             CustomPokemon cp = new CustomPokemon(pokemon, pokemonMoveList);  //adds the selected pokemon with it's selected moves.
-            party.set(i, cp);
+            party.add(cp);
             ++i;
         }
         Calendar cal = Calendar.getInstance();
 
-        Team newTeam = new Team(name, cal.YEAR, cal.MONTH, cal.DAY_OF_MONTH, party); //creates a new team
+        Team newTeam = new Team(name, Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH, party); //creates a new team
         pd.addTeam(newTeam);
-        newTeam.write(pd.getRoot().toAbsolutePath().toString());//Adds the new team to the arraylist of teams in pokedex
+        System.out.println(pd.getRoot().toAbsolutePath().toString());
+        newTeam.write(pd.getRoot().toAbsolutePath().toString() + "/");//Adds the new team to the arraylist of teams in pokedex
 
     }
     private Pokedex pd;

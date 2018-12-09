@@ -18,14 +18,15 @@ public class DeleteTeam implements MenuItem {
         }
 
         Path path = pd.getRoot();
-        PathMatcher matcher = FileSystems.getDefault().getPathMatcher("glob:*.team");
+        PathMatcher matcher = FileSystems.getDefault().getPathMatcher("glob:**.{team}");
         ArrayList<String> names = new ArrayList<>();
         String deed;
 
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(path)) {
             for (Path tm : stream) {
                 if (matcher.matches(tm)) {
-                    String name = tm.toString();
+                    String name = tm.getFileName().toString();
+                    System.out.println(name);
                     name = name.substring(0, name.lastIndexOf("."));
                     names.add(name);
                 }
@@ -42,7 +43,7 @@ public class DeleteTeam implements MenuItem {
             }
             System.out.print("Enter the name to delete (don't include the .team extension): ");
             deed = input.nextLine();
-            Path marked = Paths.get(deed + ".team");
+            Path marked = Paths.get(pd.getRoot().toString() + "/" + deed + ".team");
             try {
                 Files.delete(marked);
             } catch (NoSuchFileException x) {
@@ -58,9 +59,8 @@ public class DeleteTeam implements MenuItem {
             }
 
             pd.deleteTeam(deed);
+            return;
         }
-
-
     }
 
     private Pokedex pd;

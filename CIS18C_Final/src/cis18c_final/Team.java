@@ -82,14 +82,15 @@ public class Team {
             for (CustomPokemon poke : party) {
                 StringBuilder sb = new StringBuilder();
                 sb.append(poke.getId());
-                sb.append(" ");
+                sb.append("\n");
 
                 ArrayList<Move> moves = poke.getMoves();
-                for (int i = 0; i < moves.size(); ++i) {
-                    sb.append(moves.get(i).getName());
-                    if (i != moves.size() - 1)
-                        sb.append(" ");
+                for (Move mv : moves) {
+                    sb.append(mv.getName());
+                    sb.append("\n");
                 }
+                sb.deleteCharAt(sb.length() - 1);
+
                 bw.write(sb.toString());
                 bw.newLine();
             }
@@ -101,26 +102,6 @@ public class Team {
         return 1;
     }
     
-    public void addToTeam(CustomPokemon pokemon) {
-        if (this.party.size() < 6) {
-            this.party.add(pokemon);
-        } else {
-            System.out.println("Max team size reached. Please remove a Pokemon from this team first.");
-        }
-    }
-    
-    public void removeFromTeam(CustomPokemon pokemon) {
-        ArrayList<Integer> toremove = new ArrayList<>();
-        for (int i = 0; i < this.party.size(); i++) {
-            if (this.party.get(i).getName().compareTo(pokemon.getName()) == 0){
-                toremove.add(i);
-            }
-        }
-        for (int i : toremove) {
-            party.remove(i);
-        }
-    }
-
     private static final String suffix = ".team";
     private ArrayList<CustomPokemon> party;
     private String name;
