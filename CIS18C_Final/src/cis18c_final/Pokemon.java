@@ -71,10 +71,10 @@ public class Pokemon {
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(id).append("\n");
-        sb.append(name).append("\n");
-        sb.append(type1.name()).append("\n");
-        sb.append(type2.name()).append("\n");
+        sb.append("ID: ").append(id).append("\n");
+        sb.append("Name: ").append(name).append("\n");
+        sb.append("Type 1: ").append(type1.name()).append("\n");
+        sb.append("Type 2: ").append(type2.name()).append("\n").append("Evolutions: ");
 
         for (Pokemon p : evolutions) {
             sb.append(p.getName()).append(" ");
