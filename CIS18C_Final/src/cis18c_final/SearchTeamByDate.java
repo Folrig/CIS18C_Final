@@ -2,7 +2,6 @@ package cis18c_final;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Scanner;
 
 public class SearchTeamByDate implements MenuItem {
     public SearchTeamByDate(Pokedex _pd) {
