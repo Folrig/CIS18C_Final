@@ -45,7 +45,6 @@ public class CIS18C_Final {
             System.out.println("need a path to the data folder!");
             return;
         }
-        
         Scanner input = new Scanner(System.in);
         int menuChoice;
         Pokedex pokedex = new Pokedex(args[0]);

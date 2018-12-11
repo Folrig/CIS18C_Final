@@ -76,12 +76,25 @@ public class Pokemon {
         sb.append("Type 1: ").append(type1.name()).append("\n");
         sb.append("Type 2: ").append(type2.name()).append("\n").append("Evolutions: ");
 
-        for (Pokemon p : evolutions) {
-            sb.append(p.getName()).append(" ");
+        if (id != 133) {
+            for (Pokemon p : evolutions) {
+                sb.append(p.getName()).append(" -> ");
+            }
+            sb.delete(sb.length() - 3, sb.length() - 1);
+        }
+        else {
+            sb.append(evolutions.get(0).getName()).append(" -> ");
+            sb.append("{");
+            for (int j = 1; j < evolutions.size(); ++j) {
+                sb.append(evolutions.get(j).getName()).append(", ");
+            }
+            sb.delete(sb.length() - 2, sb.length() - 1);
+            sb.append("}");
         }
 
+
         String s = sb.toString();
-        return s.substring(0, s.length() - 1);
+        return s;
     }
 
     private int id;
