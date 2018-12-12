@@ -158,7 +158,6 @@ public class Pokedex {
             for (Path tm : stream) {
                 if (matcher.matches(tm)) {
                     ArrayList<String> input = read(tm.toString());
-
                     /* name */
                     String name = input.get(0);
                     String[] date = input.get(1).split(" ");
@@ -171,8 +170,9 @@ public class Pokedex {
                         Pokemon poke;
                         ArrayList<Move> moves = new ArrayList<>();
                         poke = getPokemon(Integer.parseInt(input.get(i)));
-                        for (int j = i; j < i + 4; ++j)
-                            moves.add(moveHashMap.get(input.get(j)));
+                        for (int j = i + 1; j < i + 4; ++j) {
+                            moves.add(moveHashMap.get(input.get(j).toLowerCase()));
+                        }
                         mon.add(new CustomPokemon(poke, moves));
                     }
 
