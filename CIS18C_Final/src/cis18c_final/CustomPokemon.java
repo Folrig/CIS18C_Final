@@ -20,7 +20,7 @@ public class CustomPokemon extends Pokemon {
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(getName()).append(" ");
+        sb.append(getName()).append(" - Moves: ");
         for (Move mv : movelist)
             sb.append(mv.getName()).append(" ");
         sb.delete(sb.length() - 1, sb.length() - 1);

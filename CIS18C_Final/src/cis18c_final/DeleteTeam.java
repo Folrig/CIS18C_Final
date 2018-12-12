@@ -59,6 +59,7 @@ public class DeleteTeam implements MenuItem {
             }
 
             pd.deleteTeam(deed);
+            System.out.printf("Team successfully deleted.%n%n");
             return;
         }
     }

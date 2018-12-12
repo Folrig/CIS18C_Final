@@ -157,7 +157,6 @@ public class Pokedex {
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(p)) {
             for (Path tm : stream) {
                 if (matcher.matches(tm)) {
-                    System.out.println(tm.toString());
                     ArrayList<String> input = read(tm.toString());
 
                     /* name */
@@ -169,7 +168,6 @@ public class Pokedex {
                     ArrayList<CustomPokemon> mon = new ArrayList<>();
 
                     for (int i = 2; i < input.size(); i = i + 5) {
-                        System.out.println(i);
                         Pokemon poke;
                         ArrayList<Move> moves = new ArrayList<>();
                         poke = getPokemon(Integer.parseInt(input.get(i)));

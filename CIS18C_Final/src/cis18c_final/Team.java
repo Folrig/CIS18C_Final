@@ -64,7 +64,7 @@ public class Team {
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(name).append("\n");
+        sb.append("Team: ").append(name).append("\n");
         sb.append(month).append('-').append(day).append('-').append(year).append("\n");
         for (CustomPokemon cp : party) {
             sb.append(cp.toString()).append("\n");
@@ -75,7 +75,7 @@ public class Team {
 
     public int write(String loc) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(loc + name + suffix, false))) {
-            bw.write(name);
+            bw.write(name);                    
             bw.newLine();
             bw.write(year + " " + month + " " + day);
             bw.newLine();

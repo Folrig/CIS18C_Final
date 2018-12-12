@@ -2,6 +2,7 @@ package cis18c_final;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Scanner;
 
 public class TeamCreate implements MenuItem {
@@ -79,14 +80,11 @@ public class TeamCreate implements MenuItem {
             ++i;
         }
         Calendar cal = Calendar.getInstance();
-
-        Team newTeam = new Team(name, Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH, party); //creates a new team
+        Team newTeam = new Team(name, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + 1, cal.get(Calendar.DAY_OF_MONTH), party); //creates a new team
         pd.addTeam(newTeam);
-        System.out.println(pd.getRoot().toAbsolutePath().toString());
+        System.out.printf("Team stored at %s%n%n", pd.getRoot().toAbsolutePath().toString());
         newTeam.write(pd.getRoot().toAbsolutePath().toString() + "/");//Adds the new team to the arraylist of teams in pokedex
-
     }
     private Pokedex pd;
     private Scanner input;
-
 }
